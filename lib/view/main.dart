@@ -73,8 +73,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _pageNumber = 0;
   var _changeColor = true;
-  var _scale = 1.0;
-  var _previousScale = 1.0;
   var _rotate = 0;
   List<Offset> _points = <Offset>[];
   @override
@@ -143,150 +141,73 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget coverImageView() {
-    return GestureDetector(
-      onScaleStart: (ScaleStartDetails details) {
-        _previousScale = _scale;
-        setState(() {});
-      },
-      onScaleUpdate: (ScaleUpdateDetails details) {
-        _scale = _previousScale * details.scale;
-        setState(() {});
-      },
-      onScaleEnd: (ScaleEndDetails details) {
-        _scale = 1.0;
-        setState(() {});
-      },
-      child: Container(
+    return Container(
+      height: 200,
+      color: Colors.black,
+      child: Image.asset(
+        getTopicsList().image,
+        fit: BoxFit.fill,
         height: 200,
-        color: Colors.black,
-        child: Image.asset(
-          getTopicsList().image,
-          fit: BoxFit.fill,
-          height: 200,
-          width: MediaQuery.of(context).size.width,
-        ),
+        width: MediaQuery.of(context).size.width,
       ),
     );
   }
 
   Widget bookTopic() {
-    return GestureDetector(
-      onDoubleTap: () {
-        setState(() {
-          _changeColor = !_changeColor;
-        });
-      },
-      onLongPress: () {
-        AlertViewDialogue().createAlertDialogue(context);
-      },
-      onPanStart: (DragStartDetails details) {
-        _points.clear();
-      },
-      onPanUpdate: (DragUpdateDetails details) {
-        setState(() {
-          RenderBox object = context.findRenderObject();
-          Offset _localPosition = object.globalToLocal(details.localPosition);
-          _points = new List.from(_points)..add(_localPosition);
-        });
-      },
-      onPanEnd: (DragEndDetails details) => _points.add(null),
-      child: ClipRect(
-        child: new CustomPaint(
-          painter: new ScreenDrawing(points: _points),
-          size: Size.infinite,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Container(
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      getTopicsList().topicHeader,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    child: Text(
-                      getTopicsList().topicBody,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      child: Container(
+        child: Column(
+          children: [
+            Center(
+              child: Text(
+                getTopicsList().topicHeader,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
-          ),
+            SizedBox(
+              height: 5,
+            ),
+            Container(
+              child: Text(
+                getTopicsList().topicBody,
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
         ),
       ),
-      //   ),
     );
   }
 
   Widget changePageView() {
     return Expanded(
-      flex: 2,
-      child: GestureDetector(
-          onDoubleTap: () {
-            setState(() {
-              _changeColor = !_changeColor;
-            });
-          },
-          onHorizontalDragEnd: (DragEndDetails details) {
-            setState(() {
-              if (details.primaryVelocity > 1) {
-                _pageNumber <= 4 && _pageNumber != 0
-                    ? _pageNumber--
-                    : _pageNumber = 4;
-              } else {
-                _pageNumber >= 0 && _pageNumber != 4
-                    ? _pageNumber++
-                    : _pageNumber = 0;
-              }
-            });
-          },
-          onVerticalDragEnd: (DragEndDetails details) {
-            setState(() {
-              if (details.primaryVelocity > 1) {
-                _pageNumber <= 4 && _pageNumber != 0
-                    ? _pageNumber--
-                    : _pageNumber = 4;
-              } else {
-                _pageNumber >= 0 && _pageNumber != 4
-                    ? _pageNumber++
-                    : _pageNumber = 0;
-              }
-            });
-          },
-          child: Container(
-            //height: 200,
-            color: _changeColor ? Colors.white : Colors.grey,
-            child: Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      "images/previous-arrow.png",
-                      fit: BoxFit.fill,
-                      height: 50,
-                      width: 40,
-                    ),
-                    Image.asset(
-                      "images/forward-arrow.png",
-                      fit: BoxFit.fill,
-                      height: 50,
-                      width: 50,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          )),
-    );
+        flex: 2,
+        child: Container(
+          color: _changeColor ? Colors.white : Colors.grey,
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(
+                    "images/previous-arrow.png",
+                    fit: BoxFit.fill,
+                    height: 50,
+                    width: 40,
+                  ),
+                  Image.asset(
+                    "images/forward-arrow.png",
+                    fit: BoxFit.fill,
+                    height: 50,
+                    width: 50,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 
   ArticleModel getTopicsList() {
