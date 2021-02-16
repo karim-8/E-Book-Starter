@@ -44,72 +44,94 @@ import 'package:flutter/services.dart';
 import 'package:gesturesstarterproject/utilis/constants.dart';
 
 class AlertViewDialogue {
-  createAlertDialogue(BuildContext context) {
+  createAlertDialogue(BuildContext context, bool isLongPressed) {
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
       builder: (BuildContext dialogContext) {
         return AlertDialog(
-          title: Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    child: Image.asset(
-                      Constants.rayLogo,
-                      width: 25,
-                      height: 25,
-                      fit: BoxFit.contain,
+          title: !isLongPressed
+              ? Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          child: Image.asset(
+                            Constants.rayLogo,
+                            width: 25,
+                            height: 25,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          Constants.rayDomain,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    Constants.rayDomain,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                Constants.articleUrl,
-                style: TextStyle(color: Colors.blue, fontSize: 12),
-              ),
-              Container(
-                height: 50,
-                color: Colors.transparent,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      Constants.articleUrl,
+                      style: TextStyle(color: Colors.blue, fontSize: 12),
+                    ),
+                    Container(
+                      height: 50,
+                      color: Colors.transparent,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              child: Center(
+                            child: Text(
+                              Constants.copyButton,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
+                                  fontSize: 12),
+                            ),
+                          )),
+                          Container(
+                              height: 50,
+                              child: Center(
+                                child: Text(
+                                  Constants.visit,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue,
+                                      fontSize: 12),
+                                ),
+                              )),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              : Row(
                   children: [
                     Container(
-                        child: Center(
-                      child: Text(
-                        Constants.copyButton,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue,
-                            fontSize: 12),
+                      child: Image.asset(
+                        Constants.rayLogo,
+                        width: 25,
+                        height: 25,
+                        fit: BoxFit.contain,
                       ),
-                    )),
-                    Container(
-                        height: 50,
-                        child: Center(
-                          child: Text(
-                            Constants.visit,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue,
-                                fontSize: 12),
-                          ),
-                        )),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      Constants.rayDomain,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
                   ],
                 ),
-              ),
-            ],
-          ),
         );
       },
     );

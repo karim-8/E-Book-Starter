@@ -130,11 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.only(top: 50),
           child: new FloatingActionButton(
             child: new Icon(Icons.clear),
-            onPressed: () {
-              setState(() {
-                _points.clear();
-              });
-            },
+            onPressed: () {},
             backgroundColor: Colors.brown,
           ),
         ));
@@ -154,27 +150,37 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget bookTopic() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Container(
-        child: Column(
-          children: [
-            Center(
-              child: Text(
-                getTopicsList().topicHeader,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+    return GestureDetector(
+      onTap: () {},
+      child: ClipRect(
+        child: new CustomPaint(
+          painter: new ScreenDrawing(points: _points),
+          size: Size.infinite,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Container(
+              child: Column(
+                children: [
+                  Center(
+                    child: Text(
+                      getTopicsList().topicHeader,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    child: Text(
+                      getTopicsList().topicBody,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(
-              height: 5,
-            ),
-            Container(
-              child: Text(
-                getTopicsList().topicBody,
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
