@@ -38,10 +38,8 @@ DEALINGS IN THE SOFTWARE.
  */
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:gesturesstarterproject/utilis/constants.dart';
+import 'package:gesturesstarterproject/utilities/constants.dart';
 
 class AlertViewDialogue {
   createAlertDialogue(BuildContext context, bool isLongPressed) {

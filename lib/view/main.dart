@@ -40,8 +40,7 @@ DEALINGS IN THE SOFTWARE.
 import 'package:flutter/material.dart';
 import 'package:gesturesstarterproject/models/article_model.dart';
 import 'package:gesturesstarterproject/painting/screen_drawing.dart';
-import 'package:gesturesstarterproject/utilis/alert_view_dialogue.dart';
-import 'package:gesturesstarterproject/utilis/constants.dart';
+import 'package:gesturesstarterproject/utilities/constants.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 void main() {

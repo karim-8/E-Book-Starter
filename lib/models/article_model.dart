@@ -37,7 +37,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
  */
 
-import 'package:gesturesstarterproject/utilis/constants.dart';
+
+import 'package:gesturesstarterproject/utilities/constants.dart';
 
 class ArticleModel {
   String topicHeader;
