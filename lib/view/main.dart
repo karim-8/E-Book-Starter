@@ -143,7 +143,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget bookTopic() {
     return GestureDetector(
-      onTap: () {},
       child: ClipRect(
         child: new CustomPaint(
           painter: new ScreenDrawing(points: _points),
