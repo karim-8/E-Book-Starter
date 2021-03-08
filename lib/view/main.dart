@@ -125,14 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(top: 50),
-          child: new FloatingActionButton(
-            child: new Icon(Icons.clear),
-            onPressed: () {},
-            backgroundColor: Colors.brown,
-          ),
-        ));
+    );
   }
 
   Widget coverImageView() {
