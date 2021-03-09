@@ -40,6 +40,7 @@ DEALINGS IN THE SOFTWARE.
 import 'package:flutter/material.dart';
 import 'package:gesturesstarterproject/models/article_model.dart';
 import 'package:gesturesstarterproject/painting/screen_drawing.dart';
+import 'package:gesturesstarterproject/utilities/alert_view_dialogue.dart';
 import 'package:gesturesstarterproject/utilities/constants.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 
@@ -143,36 +144,36 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget bookTopic() {
     return ClipRect(
-        child: new CustomPaint(
-          painter: new ScreenDrawing(points: _points),
-          size: Size.infinite,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Container(
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      getTopicsList().topicHeader,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          child: new CustomPaint(
+            painter: new ScreenDrawing(points: _points),
+            size: Size.infinite,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Container(
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        getTopicsList().topicHeader,
+                        style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    child: Text(
-                      getTopicsList().topicBody,
-                      style: TextStyle(fontSize: 16),
+                    SizedBox(
+                      height: 5,
                     ),
-                  ),
-                ],
+                    Container(
+                      child: Text(
+                        getTopicsList().topicBody,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      );
+        );
   }
 
   Widget changePageView() {
