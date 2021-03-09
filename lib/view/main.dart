@@ -142,8 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget bookTopic() {
-    return GestureDetector(
-      child: ClipRect(
+    return ClipRect(
         child: new CustomPaint(
           painter: new ScreenDrawing(points: _points),
           size: Size.infinite,
@@ -173,8 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget changePageView() {
