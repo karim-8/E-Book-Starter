@@ -73,6 +73,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _pageNumber = 0;
   var _changeColor = true;
+  var _scale = 1.0;
+  var _previousScale = 1.0;
   var _rotate = 0;
   List<Offset> _points = <Offset>[];
   @override
@@ -130,16 +132,20 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget coverImageView() {
-    return Container(
-      height: 200,
-      color: Colors.black,
-      child: Image.asset(
-        getTopicsList().image,
-        fit: BoxFit.fill,
-        height: 200,
-        width: MediaQuery.of(context).size.width,
-      ),
-    );
+    return Transform(
+        alignment: FractionalOffset.center,
+        transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
+        child: Container(
+          height: 200,
+          color: Colors.black,
+          child: Image.asset(
+            getTopicsList().image,
+            fit: BoxFit.fill,
+            height: 200,
+            width: MediaQuery.of(context).size.width,
+          ),
+        ),
+      );
   }
 
   Widget bookTopic() {
