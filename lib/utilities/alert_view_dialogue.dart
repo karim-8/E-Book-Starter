@@ -36,11 +36,11 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
  */
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gesturesstarterproject/utilities/constants.dart';
+import 'package:flutter/services.dart';
+import 'constants.dart';
 
 class AlertViewDialogue {
   createAlertDialogue(BuildContext context, bool isLongPressed) {
@@ -51,88 +51,108 @@ class AlertViewDialogue {
         return AlertDialog(
           title: !isLongPressed
               ? Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          child: Image.asset(
-                            Constants.rayLogo,
-                            width: 25,
-                            height: 25,
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          Constants.rayDomain,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      Constants.articleUrl,
-                      style: TextStyle(color: Colors.blue, fontSize: 12),
-                    ),
-                    Container(
-                      height: 50,
-                      color: Colors.transparent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                              child: Center(
-                            child: Text(
-                              Constants.copyButton,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue,
-                                  fontSize: 12),
-                            ),
-                          )),
-                          Container(
-                              height: 50,
-                              child: Center(
-                                child: Text(
-                                  Constants.visit,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blue,
-                                      fontSize: 12),
-                                ),
-                              )),
-                        ],
-                      ),
-                    ),
-                  ],
-                )
-              : Row(
-                  children: [
-                    Container(
-                      child: Image.asset(
-                        Constants.rayLogo,
-                        width: 25,
-                        height: 25,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      Constants.rayDomain,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                  ],
+            children: [
+              headerView(),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                Constants.articleUrl,
+                style: TextStyle(color: Colors.blue, fontSize: 12),
+              ),
+                 Container(
+                  height: 50,
+                  color: Colors.transparent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                         copyButtonView(),
+                         visitButtonView(),
+                    ],
+                  ),
                 ),
+            ],
+          )
+              : singleAlertView(),
         );
       },
+    );
+  }
+
+  Widget headerView() {
+    return Row(
+      children: [
+        Container(
+          child: Image.asset(
+            Constants.rayLogo,
+            width: 25,
+            height: 25,
+            fit: BoxFit.contain,
+          ),
+        ),
+        SizedBox(
+          width: 5,
+        ),
+        Text(
+          Constants.rayDomain,
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+      ],
+    );
+  }
+  Widget copyButtonView() {
+    return Container(
+        width: 70,height: 30,
+        decoration: BoxDecoration(
+            border: Border.all(width: 1,color: Colors.blue)
+        ),
+        child: Center(
+          child: Text(
+            Constants.copyButton,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+                fontSize: 12),
+          ),
+        ));
+  }
+  Widget visitButtonView() {
+    return Container(
+        width: 100,height: 30,
+        decoration: BoxDecoration(
+            border: Border.all(width: 1,color: Colors.blue)
+        ),
+        child: Center(
+          child: Text(
+            Constants.visit,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+                fontSize: 12),
+          ),
+        )) ;
+  }
+  Widget singleAlertView() {
+    return Row(
+      children: [
+        Container(
+          child: Image.asset(
+            Constants.rayLogo,
+            width: 25,
+            height: 25,
+            fit: BoxFit.contain,
+          ),
+        ),
+        SizedBox(
+          width: 5,
+        ),
+        Text(
+          Constants.rayDomain,
+          style:
+          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+      ],
     );
   }
 
@@ -143,3 +163,9 @@ class AlertViewDialogue {
   }
 }
 
+class AllowMultipleGestureRecognizer extends TapGestureRecognizer {
+  @override
+  void rejectGesture(int pointer) {
+    acceptGesture(pointer);
+  }
+}

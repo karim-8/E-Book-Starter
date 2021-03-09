@@ -99,18 +99,21 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            color: _changeColor ? Colors.white : Colors.grey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                coverImageView(),
-                bookTopic(),
-                changePageView(),
-              ],
+        body: Builder(
+          builder: (contexts)=>
+           SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(),
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              color: _changeColor ? Colors.white : Colors.grey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  coverImageView(),
+                  bookTopic(contexts),
+                  changePageView(),
+                ],
+              ),
             ),
           ),
         ),
@@ -148,38 +151,38 @@ class _MyHomePageState extends State<MyHomePage> {
       );
   }
 
-  Widget bookTopic() {
+  Widget bookTopic(BuildContext buildContext) {
     return ClipRect(
-          child: new CustomPaint(
-            painter: new ScreenDrawing(points: _points),
-            size: Size.infinite,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Container(
-                child: Column(
-                  children: [
-                    Center(
-                      child: Text(
-                        getTopicsList().topicHeader,
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            child: new CustomPaint(
+              painter: new ScreenDrawing(points: _points),
+              size: Size.infinite,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Container(
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Text(
+                          getTopicsList().topicHeader,
+                          style:
+                              TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      child: Text(
-                        getTopicsList().topicBody,
-                        style: TextStyle(fontSize: 16),
+                      SizedBox(
+                        height: 5,
                       ),
-                    ),
-                  ],
+                      Container(
+                        child: Text(
+                          getTopicsList().topicBody,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        );
+          );
   }
 
   Widget changePageView() {
