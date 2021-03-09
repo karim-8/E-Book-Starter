@@ -38,6 +38,7 @@ DEALINGS IN THE SOFTWARE.
  */
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gesturesstarterproject/utilities/constants.dart';
 
@@ -141,3 +142,4 @@ class AlertViewDialogue {
     ));
   }
 }
+
