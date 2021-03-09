@@ -135,11 +135,9 @@ class AlertViewDialogue {
     );
   }
 
-  showToastMessage(BuildContext context) async {
-    ScaffoldMessengerState scaffoldMessenger = ScaffoldMessenger.of(context);
-    ScaffoldFeatureController controller = scaffoldMessenger.showSnackBar(
-      const SnackBar(content: Text('URL Copied to Clipboard')),
-    );
-    await controller.closed;
+  showToastMessage(BuildContext context,String message) async {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(message),duration:Duration(seconds: 2),
+    ));
   }
 }
