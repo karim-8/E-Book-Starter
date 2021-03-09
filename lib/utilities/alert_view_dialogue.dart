@@ -60,20 +60,9 @@ class AlertViewDialogue {
                 Constants.articleUrl,
                 style: TextStyle(color: Colors.blue, fontSize: 12),
               ),
-                 Container(
-                  height: 50,
-                  color: Colors.transparent,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                         copyButtonView(),
-                         visitButtonView(),
-                    ],
-                  ),
-                ),
+              itemsRowView(context,dialogContext),
             ],
-          )
-              : singleAlertView(),
+          ) : singleAlertView(),
         );
       },
     );
@@ -101,37 +90,50 @@ class AlertViewDialogue {
       ],
     );
   }
-  Widget copyButtonView() {
+  Widget itemsRowView(BuildContext context, BuildContext dialogContext){
     return Container(
-        width: 70,height: 30,
-        decoration: BoxDecoration(
-            border: Border.all(width: 1,color: Colors.blue)
-        ),
-        child: Center(
-          child: Text(
-            Constants.copyButton,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
-                fontSize: 12),
+           height: 50,
+           color: Colors.transparent,
+            child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              copyButtonView(context),
+              visitButtonView(context),
+            ],
           ),
-        ));
+        );
   }
-  Widget visitButtonView() {
+  Widget copyButtonView(BuildContext context) {
     return Container(
-        width: 100,height: 30,
-        decoration: BoxDecoration(
-            border: Border.all(width: 1,color: Colors.blue)
-        ),
-        child: Center(
-          child: Text(
-            Constants.visit,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
-                fontSize: 12),
+          width: 70,height: 30,
+          decoration: BoxDecoration(
+              border: Border.all(width: 1,color: Colors.blue)
           ),
-        )) ;
+          child: Center(
+            child: Text(
+              Constants.copyButton,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                  fontSize: 12),
+            ),
+          ));
+  }
+  Widget visitButtonView(BuildContext context) {
+    return Container(
+          width: 100,height: 30,
+          decoration: BoxDecoration(
+              border: Border.all(width: 1,color: Colors.blue)
+          ),
+          child: Center(
+            child: Text(
+              Constants.visit,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                  fontSize: 12),
+            ),
+          ));
   }
   Widget singleAlertView() {
     return Row(
@@ -155,7 +157,6 @@ class AlertViewDialogue {
       ],
     );
   }
-
   showToastMessage(BuildContext context,String message) async {
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text(message),duration:Duration(seconds: 2),
